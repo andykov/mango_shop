@@ -1,0 +1,46 @@
+// border-arrow(borderWidth = 2px) {
+// 	border: borderWidth solid #F00;
+// 	color: #F00;
+// }
+
+
+//=== Миксин для placeholder ===//
+// Пример вызова:
+// input {
+// 	+placeholder() {
+// 		color #fff
+// 	}
+// }
+placeholder()
+	&::-webkit-input-placeholder
+		{block}
+	&:-moz-placeholder
+		{block}
+	&::-moz-placeholder
+		{block}
+	&:-ms-input-placeholder
+		{block}
+		
+
+//=== Генерация спрайтов ===//
+/*
+Вызов: sprite($var) - вместо $var, вставлять переменные из сгенерированного файла sprite.styl
+*/
+spriteWidth($sprite) {
+	width: $sprite[4];
+}
+spriteHeight($sprite) {
+	height: $sprite[5];
+}
+spritePosition($sprite) {
+	background-position: $sprite[2] $sprite[3];
+}
+spriteImage($sprite) {
+	background-image: url(../img/sprite/$sprite[8]);
+}
+sprite($sprite) {
+	spriteImage($sprite)
+	spritePosition($sprite)
+	spriteWidth($sprite)
+	spriteHeight($sprite)
+}

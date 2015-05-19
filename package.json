@@ -1,0 +1,29 @@
+{
+  "name": "gulp_front",
+  "version": "1.0.0",
+  "description": "Start developing front-end",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrey Budnikov (andykov)",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.5.2",
+    "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^2.1.0",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-jshint": "^1.10.0",
+    "gulp-minify-css": "^1.0.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-rigger": "^0.5.8",
+    "gulp-sourcemaps": "^1.5.1",
+    "gulp-stylus": "^2.0.1",
+    "gulp-uglify": "^1.2.0",
+    "gulp-watch": "^4.2.2",
+    "gulp.spritesmith": "^3.5.3",
+    "imagemin-pngquant": "^4.0.0",
+    "rimraf": "^2.3.2"
+  }
+}
