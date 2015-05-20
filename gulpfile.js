@@ -15,7 +15,7 @@ var gulp = require('gulp'),
 	rename = require('gulp-rename'),
 	plumber = require('gulp-plumber'),
 	jshint = require('gulp-jshint'),
-	browserSync = require("browser-sync"),
+	browserSync = require("browser-sync").create(),
 	reload = browserSync.reload;
 
 var path = {
@@ -58,14 +58,21 @@ gulp.task('webserver', function () {
         server: {
 			baseDir: "./build"
 		},
-		tunnel: true,
 		host: 'localhost',
-		port: 9040,
+		port: 9000,
 		logPrefix: "gulp_frontend",
+		// tunnel: true,
 		ui: {
-		    port: 9030
+		    port: 9001
 		}
     });
+    browserSync.notify("Compiling, please wait!");
+    // with config + callback
+	// browserSync.init(config, function (err, browserSync) {
+	//     if (!err) {
+	//         console.log("BrowserSync is ready!");
+	//     }
+	// });
 });
 
 // Сборка HTML
@@ -74,7 +81,7 @@ gulp.task('html:build', function () {
 		.pipe(plumber())
 		.pipe(rigger()) // Инклюдит файлы, пример (//= template/footer.html)
 		.pipe(gulp.dest(path.build.html))
-		.pipe(reload({stream: true}));
+		.pipe(reload({stream:true}));
 });
 
 // Сборка CSS
@@ -88,7 +95,7 @@ gulp.task('style:build', function () {
 		.pipe(sourcemaps.write()) // Пропишем карты
 		.pipe(rename({suffix: ".min"})) // Пропишем карты
 		.pipe(gulp.dest(path.build.css))
-		.pipe(reload({stream: true}));
+		.pipe(reload({stream:true}));
 });
 
 
@@ -100,7 +107,7 @@ gulp.task('js:build', function () {
 		.pipe(jshint.reporter("default"))
 		.pipe(uglify())
 		.pipe(gulp.dest(path.build.js))
-		.pipe(reload({stream: true}));
+		.pipe(reload({stream:true}));
 });
 
 
@@ -114,7 +121,7 @@ gulp.task('images:build', function () {
 			interlaced: true
 		}))
 		.pipe(gulp.dest(path.build.img))
-		.pipe(reload({stream: true}));
+		.pipe(reload({stream:true}));
 });
 
 
