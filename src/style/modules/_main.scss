@@ -1,0 +1,10 @@
+.steps {
+	overflow: hidden;
+	&__item {
+		width: 33.333%;
+		float: left;
+		&--active {
+
+		}
+	}
+}

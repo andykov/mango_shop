@@ -1,0 +1,89 @@
+/*==============#BASE STYLE================*/
+body {
+	font: $font_size $font_segoe_regular;
+}
+
+h1,h2,h3 {
+	font-family: $font_segoe_semibold;
+}
+	
+h1 {
+	font-size: 24px;
+}
+	
+h2 {
+	font-size: 18px;
+}
+	
+h3 {
+	font-size: 16px;
+}
+	
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.cf:before,.cf:after {
+	content: "";
+	display: table;
+}
+.cf:after {
+	clear: both;
+}
+.container {
+	min-width: 1024px;
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 0 24px;
+	box-sizing: border-box;
+}
+
+.btn {
+	text-decoration: none;
+	touch-action: manipulation;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 1;
+	border-radius: 3px;
+	padding: 9px 14px;
+	&--transp {
+		@include btn-transparent;
+		@include text-uppercase(true);
+	}
+	&--secondary {
+		@include btn-secondary;
+		&:hover {
+		}
+	}
+	&--default {
+		@include btn-default;
+		&:hover {
+		}
+	}
+	&--special {
+		@include btn-special;
+		@include text-uppercase(true);
+	}
+	&--success {
+		@include btn-success;
+	}
+}
+
+.cols {
+	@include clearfix();
+	&__left,
+	&__right {
+		box-sizing: border-box;
+	}
+	&__left {
+		float: left;
+		width: 700/940*100%;
+	}
+	&__right {
+		float: right;
+		width: 240/940*100%;
+		padding-left: 40/940*100%;
+	}
+}

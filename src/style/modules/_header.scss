@@ -1,0 +1,16 @@
+// input {
+// 	+placeholder() {
+// 		color #fff
+// 	}
+// }
+
+
+
+.steps__item:before {
+	content:'';
+	@include sprite($s-steps-right-active);
+}
+	
+.steps__item--active:before {
+	@include sprite($s-steps-right);
+}

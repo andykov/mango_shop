@@ -3,7 +3,8 @@
 var gulp = require('gulp'),
 	watch = require("gulp-watch"),
 	prefixer = require('gulp-autoprefixer'),
-	stylus = require('gulp-stylus'),
+	// stylus = require('gulp-stylus'),
+	sass = require('gulp-sass'),
 	sourcemaps = require('gulp-sourcemaps'),
 	minifyCSS = require('gulp-minify-css'),
 	uglify = require('gulp-uglify'),
@@ -32,7 +33,7 @@ var path = {
 	src: { 
 		html: 'src/*.html',
 		scripts: 'src/scripts/**/*.js',
-		style: 'src/style/style.styl',
+		style: 'src/style/style.scss',
 		images: ['src/images/**/*', '!src/images/sprite/*.*'], // Игнорируем папку для спрайта
 		spriteOrigin: 'src/images/sprite/*.*', // отсюда берем исходники для спрайта
 		spriteStylus: 'src/style/modules/', // отсюда берем исходники для спрайта
@@ -42,7 +43,7 @@ var path = {
 	watch: {
 		html: 'src/**/*.html',
 		scripts: 'src/scripts/**/*.js',
-		style: 'src/style/**/*.styl',
+		style: 'src/style/**/*.scss',
 		images: 'src/images/**/*',
 		sprite: 'src/images/sprite/*.*',
 		fonts: 'src/style/fonts/**/*.*'
@@ -89,10 +90,10 @@ gulp.task('style:build', function () {
 	gulp.src(path.src.style)
 		.pipe(plumber())
 		.pipe(sourcemaps.init()) // Инициализируем sourcemap
-		.pipe(stylus())
+		.pipe(sass())
 		.pipe(prefixer({browsers: ['last 4 versions', 'ie 8']}))
 		.pipe(minifyCSS())
-		.pipe(sourcemaps.write()) // Пропишем карты
+		.pipe(sourcemaps.write('./maps')) // Пропишем карты
 		.pipe(rename({suffix: ".min"})) // Пропишем карты
 		.pipe(gulp.dest(path.build.css))
 		.pipe(reload({stream:true}));
@@ -131,10 +132,10 @@ gulp.task('sprite:build', function() {
 		gulp.src(path.src.spriteOrigin) // путь, откуда берем картинки для спрайта
 			.pipe(spritesmith({
 				imgName: 'sprite.png',
-				cssName: 'sprite.styl',
-				cssFormat: 'stylus',
+				cssName: '_sprite.scss',
+				cssFormat: 'sass',
 				algorithm: 'binary-tree',
-				cssTemplate: 'stylus.template.mustache', // формат css переменных
+				cssTemplate: 'sass.template.mustache', // формат css переменных
 				cssVarMap: function(sprite) {
 					sprite.name = 's-' + sprite.name
 				}
